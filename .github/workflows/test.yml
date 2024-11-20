@@ -1,0 +1,45 @@
+# workflows의 이름
+name: upload Testflight
+
+# workflow가 언제 실행될 것인지 -> 실행시점
+on:
+  #dev에 push이벤트가 발생할 때 workflow를 실행하겠다
+  push:
+    branches: ["dev"]
+
+  workflow_dispatch:
+
+# workflows를 실행하면서 해야 하는 일들
+jobs:
+  # This workflow contains a single job called "build"
+  upload_testflight:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      # # ruby 설치
+      # - uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 2.7
+
+      # # fastlane 설치
+      # - name: Install Fastlane
+      #   run: brew install fastlane
+
+      # # keychain 초기화
+      # - name: Set Keychain
+      #   run: fastlane set_keychain
+      #   env:
+      #     KEYCHAIN_NAME: ${{ secrets.KEYCHAIN_NAME }}
+      #     KEYCHAIN_PASSWORD: $ {{ secrets.KEYCHAIN_PASSWORD }}
+
+      #   # fastlane 실행
+      #   - name: Fun Fastlane beta
+      #     run: fastlane beta
+      #     env:
+      #       KEYCHAIN_NAME: ${{ secrets.KEYCHAIN_NAME }}
+      #       KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+      #       APP_STORE_CONNECT_API_KEY_KEY_ID: $ {{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+      #       APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+      #       APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
